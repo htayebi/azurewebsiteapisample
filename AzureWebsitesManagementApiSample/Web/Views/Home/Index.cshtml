@@ -1,0 +1,56 @@
+﻿@model Web.Models.CreateSiteViewModel
+
+@{
+    ViewBag.Title = "Create a Website";
+}
+
+<h2>Index2</h2>
+
+
+@using (Html.BeginForm("Index","Home", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CreateSiteViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SiteName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SiteName)
+                @Html.ValidationMessageFor(model => model.SiteName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WebSpaceName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="WebSpaceName">
+                    <option value="eastuswebspace">East US</option>
+                    <option value="westuswebspace">West US</option>
+                    <option value="northcentraluswebspace">North Central US</option>
+                    <option value="northeuropewebspace">North Europe</option>
+                    <option value="westeuropewebspace">West Europe</option>
+                    <option value="eastasiawebspace">East Asia</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.WebSpaceName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
